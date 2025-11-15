@@ -23,6 +23,7 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: 3.8
+        cache: 'pip'
 
     - name: Clone gtfs-osm-validator
       run: |
@@ -30,8 +31,7 @@ jobs:
 
     - name: Install gtfs-osm-validator dependencies
       run: |
-        python -m pip install --upgrade pip wheel
-        pip install -r gtfs-osm-validator/requirements.txt
+        pip install -r requirements.txt
 
     - name: Fetch Burlington gtfs data
       run: |
