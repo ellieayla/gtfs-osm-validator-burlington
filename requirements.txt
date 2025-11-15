@@ -1,3 +1,4 @@
 overpy==0.6
 pyproj==3.5.0
 shapely==2.0.1
+gtfspy @ git+https://github.com/CxAalto/gtfspy@24a60db1153efdc41ed9bb102aba039af1badf4b
