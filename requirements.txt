@@ -1,4 +1,4 @@
-setuptools<=57.5.0
+osmread @ git+https://github.com/dezhin/osmread@d8d3fe5edd15fdab9526ea7a100ee6c796315663
 overpy==0.6
 pyproj==3.5.0
 shapely==2.0.1
