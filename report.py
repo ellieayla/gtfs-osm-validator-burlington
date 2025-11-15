@@ -72,7 +72,7 @@ def main():
 
     p = argparse.ArgumentParser()
     p.add_argument("--read", type=argparse.FileType('r'))
-    p.add_argument("--write", type=argparse.FileType('wb'))
+    p.add_argument("--write", type=argparse.FileType('w'))
     n = p.parse_args()
 
     for row in n.read.readlines():
