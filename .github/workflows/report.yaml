@@ -33,7 +33,7 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    - name: Fetch Burlington gtfs data
+    - name: Fetch Burlington public gtfs data
       run: |
         curl -O https://opendata.burlington.ca/gtfs-rt/GTFS_Data.zip
 
@@ -43,7 +43,9 @@ jobs:
 
     - name: Run gtfs-osm-validator and produce text output
       run: |
-        python src/main.py --config burlington ../GTFS_Data.zip > output.txt
+        cd gtfs-osm-validator
+        python src/main.py --config burlington ../GTFS_Data.zip > ../output.txt
+        cd ..
 
     - name: Build markdown report
       run: |
