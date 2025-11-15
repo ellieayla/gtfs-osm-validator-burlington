@@ -86,6 +86,8 @@ def main():
 
         ):
             output_row = fn(output_row)
+            if output_row is None:
+                raise ValueError(f"call to {fn} on row returned None for row: {row}")
 
         n.write.write(output_row + '\n')
 
