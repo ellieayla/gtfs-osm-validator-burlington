@@ -36,6 +36,7 @@ jobs:
         git checkout 24a60db1153efdc41ed9bb102aba039af1badf4b
         cd ..
         cat gtfspy-osmread-version.patch | patch -d gtfspy
+        cat gtfs-osm-validator/remove_routing.patch | patch -d gtfspy
 
     - name: Install gtfs-osm-validator dependencies
       run: |
