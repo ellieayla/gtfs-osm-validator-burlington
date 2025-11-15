@@ -29,10 +29,16 @@ jobs:
       run: |
         git clone https://gitlab.com/stalker314314/gtfs-osm-validator.git
 
+    - name: Clone gtfspy, and patch out broken dependency
+      run: |
+        git clone https://github.com/CxAalto/gtfspy.git
+        cd gtfspy && git checkout 24a60db1153efdc41ed9bb102aba039af1badf4b
+        cat gtfspy-osmread-version.patch | patch -d gtfspy
+
     - name: Install gtfs-osm-validator dependencies
       run: |
-        pip install -r requirements.txt
-
+        pip install -r requirements.txt gtfspy/
+        
     - name: Fetch Burlington public gtfs data
       run: |
         curl -O https://opendata.burlington.ca/gtfs-rt/GTFS_Data.zip

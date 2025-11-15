@@ -1,0 +1,13 @@
+diff --git a/requirements.txt b/requirements.txt
+index c8ffbde..354a7d9 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -7,7 +7,7 @@ nose
+ Cython
+ six
+ geoindex
+-osmread==0.2
++osmread
+ geojson>=2.0.0
+ shapely
+ pyproj

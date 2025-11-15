@@ -2,4 +2,3 @@ osmread @ git+https://github.com/dezhin/osmread@d8d3fe5edd15fdab9526ea7a100ee6c7
 overpy==0.6
 pyproj==3.5.0
 shapely==2.0.1
-gtfspy @ git+https://github.com/CxAalto/gtfspy@24a60db1153efdc41ed9bb102aba039af1badf4b
