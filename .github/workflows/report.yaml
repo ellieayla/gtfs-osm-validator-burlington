@@ -64,11 +64,17 @@ jobs:
     - name: Setup pages
       uses: actions/configure-pages@v5
   
+    - name: Build with jekyll
+      uses: actions/jekyll-build-pages@v1
+      with:
+        source: "./output"
+        destination: "./_site"
+
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v4
       with:
         # upload entire directory
-        path: 'output'
+        path: "./_site"
     
     - name: Deploy to GitHub Pages
       id: deployment
