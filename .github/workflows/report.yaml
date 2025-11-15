@@ -32,9 +32,9 @@ jobs:
     - name: Clone gtfspy, and patch out broken dependency
       run: |
         git clone https://github.com/CxAalto/gtfspy.git
-        cd gtfspy && git checkout 24a60db1153efdc41ed9bb102aba039af1badf4b
-        ls
-        pwd
+        cd gtfspy
+        git checkout 24a60db1153efdc41ed9bb102aba039af1badf4b
+        cd ..
         cat gtfspy-osmread-version.patch | patch -d gtfspy
 
     - name: Install gtfs-osm-validator dependencies
