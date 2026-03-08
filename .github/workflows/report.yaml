@@ -1,10 +1,9 @@
 name: Scrape latest data
 
 on:
-  push:
   workflow_dispatch:
   schedule:
-    - cron: '48 3 * * 6'  # Weekly
+    - cron: '40 1 4 * *'  # Monthly
 
 jobs:
   scheduled:
@@ -79,3 +78,22 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
+
+  issue:
+    needs: [scheduled]
+    runs-on: ubuntu-latest
+    if: ${{ failure() }}
+
+    permissions:
+      issues: write
+
+    steps:
+    - name: Get current date in NOW env variable
+      run: echo "NOW=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+    - name: Report issue on failure
+      env:
+        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        gh issue create --title "Failed job $NOW" --repo "$GITHUB_REPOSITORY" --assignee "$GITHUB_REPOSITORY_OWNER" --body "$RUN_URL"
