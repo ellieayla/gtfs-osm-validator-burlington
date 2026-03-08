@@ -1,0 +1,33 @@
+name: lint workflows
+
+on:
+  # test in isolation
+  push:
+    branches:
+      - '*'
+    paths:
+        - .github/workflows/**/*.yaml'
+
+  # test as-merged
+  pull_request:
+    paths:
+        - .github/workflows/**/*.yaml'
+
+
+jobs:
+  lint-github-workflows:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout/@v6
+
+      - name: Download actionlint
+        id: get_actionlint
+        run: |
+          bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+        shell: bash
+
+      - name: Check workflow files
+        run: |
+          "${{ steps.get_actionlint.outputs.executable }}" -verbose -pyflakes= -no-color -ignore "SC2086.*Double quote" | tee -a $GITHUB_STEP_SUMMARY
+        shell: bash
